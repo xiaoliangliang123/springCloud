@@ -6,6 +6,8 @@
       <sourceFolder url="file://$MODULE_DIR$/service/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/service1/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/feginclient/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/server/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/client/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
