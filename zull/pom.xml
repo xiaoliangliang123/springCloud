@@ -42,7 +42,11 @@
             <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
             <version>${spring-eureka-version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
     </dependencies>
 
     <build>
