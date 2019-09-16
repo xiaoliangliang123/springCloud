@@ -2,6 +2,8 @@ package com.springcloud.client.service;
 
 import model.JsonResult;
 
+import java.security.NoSuchAlgorithmException;
+
 /**
  * @author:WANGLIANG(XIAO)
  * @Date: 2019/9/16 11:45
@@ -9,5 +11,5 @@ import model.JsonResult;
  */
 public interface UserService {
 
-    public JsonResult login(String username,String password);
+    JsonResult login(String username,String password) throws NoSuchAlgorithmException;
 }

@@ -1,14 +1,17 @@
 package com.springcloud.client.controller;
 
 import com.google.gson.JsonArray;
+import com.springcloud.client.service.UserService;
 import model.DataModel;
 import model.JsonResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +26,9 @@ import java.util.Map;
 @RequestMapping("/main")
 public class IndexController {
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping("index")
     public String main(){
         return "/main";
@@ -36,15 +42,15 @@ public class IndexController {
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult login(@RequestBody Map<String,String> map){
+    public JsonResult login(@RequestBody Map<String,String> map) throws NoSuchAlgorithmException {
 
         String username = map.get("username");
         String password = map.get("password");
 
 
-        Map result = new HashMap(1);
-        result.put("key","");
-        return new JsonResult(result);
+        JsonResult jsonResult = userService.login(username,password);
+
+        return jsonResult;
     }
 
     @RequestMapping(value = "/mainList",method = RequestMethod.POST)
