@@ -1,12 +1,12 @@
 package com.springcloud.client.service.impl;
 
 import com.base.base.config.db.BaseDao;
-import com.base.base.config.db.JBaseDao;
+import com.base.base.model.SignatureUser;
+import com.base.base.util.DataUtil;
 import com.base.base.util.GenerateUtil;
 import com.base.base.util.StringUtil;
 import com.springcloud.client.service.UserService;
 import model.JsonResult;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
@@ -28,12 +28,17 @@ public class UserServiceImpl extends BaseDao implements UserService {
 
         password = GenerateUtil.toMd5(password);
         String sql = "select * from user where username = '"+username+"' and password = '"+password+"'";
-        List<Map> mapList = getjBaseDao().queryForList(sql);
+        List<Map<String,String>> mapList = getjBaseDao().queryForList(sql);
         Map result = new HashMap(1);
         if(StringUtil.isEmpty(mapList)){
              return new JsonResult(true,"该用户不存在");
+        }else {
+            Map<String,String> map = mapList.get(0);
+            String id = ((Object)map.get("id")).toString();
+            String signature =DataUtil.createJWT(30000,new SignatureUser(id,username));
+            result.put("signature",signature);
         }
-        result.put("key","");
-        return new JsonResult(result);
+
+        return new JsonResult(true,"登录成功",result);
     }
 }
