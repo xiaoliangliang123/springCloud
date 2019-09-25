@@ -31,7 +31,7 @@ public class LoginFilter extends ZuulFilter {
         String requestUrl = request.getRequestURL().toString();
         if(requestUrl.endsWith("/main/login")){
             return false;
-        }else if(requestUrl.endsWith("/main/mainList")){
+        }else if(requestUrl.endsWith("/client/main/mainList")){
             return false;
         }else {
             return true;
